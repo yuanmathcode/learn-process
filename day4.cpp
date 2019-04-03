@@ -15,17 +15,20 @@ private:
 	int _index;
 	char _type;
 	double _time;
+        set<shared_ptr<op>> _child;
 
 public:
-        shared_ptr<op> _child;
-	const int index() {return _index;}
-	const double time() {return _time;}
 	op(int given_index,char given_type)
 	:_index(given_index),_type(given_type){}
-/*	op(int given_index, char given_type, op given_child)
-	:_index(given_index),_type(given_type){
-		_child.insert(given_child);
-	}*/
+       /* op(int given_index, char given_type, shared_ptr<op> &given_child)
+        :_index(given_index),_type(given_type){
+                _child.insert(given_child);
+        }*/
+	set<shared_ptr<op>> &child() {return _child;}
+        const char type() {return _type;}
+	const int index() {return _index;}
+	const double time() {return _time;}
+	
 };
 
 class dev{
@@ -64,9 +67,11 @@ int main(){
 	}
         for(int i=0;i<50;i++){
 		if(i%2==1){
-                	operation[i]->_child=operation[i-1];
-			cout<<"the child of "<<operation[i]->index()<<" is  "<<operation[i]->_child->index()<<endl;	
+                	operation[i]->child().insert(operation[i-1]);
+//			cout<<"the child of "<<operation[i]->index()<<" is  "<<operation[i]->child()->index()<<endl;	
 		}
+		for(auto &it:operation[i]->child())
+			cout<<it->index()<<"  "<<endl;
 	}
 	
 	for(int i=0;i<10;i++){
@@ -74,7 +79,6 @@ int main(){
 			device.push_back(make_shared<dev>(i,gtype[0]));
 		if(i%5==1)
 			device.push_back(make_shared<dev>(i,gtype[1]));
-
 
 		if(i%5==2)
 			device.push_back(make_shared<dev>(i,gtype[2]));
