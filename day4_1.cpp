@@ -14,10 +14,11 @@ class op{
 private:
 	int _index;
 	char _type;
-	double _time;
+//	double _time;
         set<shared_ptr<op>> _child;
 
 public:
+	double time;
 	op(int given_index,char given_type)
 	:_index(given_index),_type(given_type){}
        /* op(int given_index, char given_type, shared_ptr<op> &given_child)
@@ -27,7 +28,7 @@ public:
 	set<shared_ptr<op>> &child() {return _child;}
         const char type() {return _type;}
 	const int index() {return _index;}
-	double time() {return _time;}
+//	double time() {return _time;}
 	
 };
 
@@ -35,11 +36,12 @@ class dev{
 private:
 	int _index;
 	char _type;
-	double  _time;
+//	double  _time;
 public:
+	double time;
 	const int index() {return _index;}
 	const char type() {return _type;}
-	double time() {return _time;}
+//	const double time() {return _time;}
 	dev(int given_index,char given_type)
 	:_index(given_index),_type(given_type){}
 };
@@ -99,9 +101,9 @@ void calculate_time(map<shared_ptr<op>,shared_ptr<dev>>){
 	for(auto &i:operation){
 		for(auto &j:device){
 			if(op_dev_map[i]==j){
-				j->time()+=i->time();
+				j->time+=i->time;
 			}
-			time_of_dev.insert(j->time());
+			time_of_dev.insert(j->time);
 			for(auto &h:time_of_dev)
 				cout<<*time_of_dev.end()<<"  "<<endl;
 		}
