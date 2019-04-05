@@ -46,12 +46,11 @@ public:
 
 shared_ptr<node> singlenode;
 shared_ptr<edge> singleedge;
-
 void readfile(const char* filename){
 	string node_type;
 	int node_index;
 	fstream read;
-	read.open(filename,fstream::in);
+	read.open("design.txt",fstream::in);
 	while(1){
 		read>>node_type;
 		if(read.eof())
@@ -60,10 +59,12 @@ void readfile(const char* filename){
 		read>>node_index;
 		singlenode->id()=node_index;
 	}
+	cout<<singlenode->id()<<"  "<<singlenode->type()<<" "<<endl;
 }
 
-int main(){}
-
+int main(){
+readfile("design.txt");
+}
 
 
 
