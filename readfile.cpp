@@ -1,11 +1,10 @@
 #include<iostream>
-#include<map>
-#include<set>
-#include <vector>
-#include <fstream>
-#include <string>
-#include <memory>
-#include <cstring>
+#include<vector>
+#include<fstream>
+#include<string>
+#include<memory>
+#include<cstring>
+#include<sstream>
 
 using namespace std;
 
@@ -24,7 +23,7 @@ public:
 		_type=g_type;}
 };
 
-class edge{
+/*class edge{
 private:
 	int _id;
 	pair<shared_ptr<node>,shared_ptr<node>> _nton;
@@ -42,28 +41,48 @@ private:
 public:
 	const int id() {return _id;}
 	set<shared_ptr<node>> &ntoch() {return _ntoch;}
-};
+};*/
 
-shared_ptr<node> singlenode;
-shared_ptr<edge> singleedge;
+/*vector<shared_ptr<node>> vecnode;
 void readfile(const char* filename){
 	string node_type;
 	int node_index;
 	fstream read;
-	read.open("design.txt",fstream::in);
-	while(1){
+	read.open("design1.txt",fstream::in);
+	while(1){ 
 		read>>node_type;
 		if(read.eof())
 			break;
-		singlenode->type()=node_type;
+		shared_ptr<node> node;
+		node->type()=node_type;
 		read>>node_index;
-		singlenode->id()=node_index;
+		node->id()=node_index;
+		vecnode.push_back(node);
 	}
-	cout<<singlenode->id()<<"  "<<singlenode->type()<<" "<<endl;
-}
+	cout<<vecnode[node_index]->id()<<"  "<<vecnode[node_index]->type()<<" "<<endl;
+}*/
 
 int main(){
-readfile("design.txt");
+	string filename;
+	cin>>filename;
+	ifstream in(filename);
+	if(!in.is_open()){
+		cerr<<"Fail to open file: "<<filename<<endl;
+		return -1;
+
+	}
+
+	string node_type;
+	int node_index;
+	vector<shared_ptr<node>> nodes;
+	while(getline(in,node_type)){
+		istringstream record(node_type);
+		shared_ptr<node> node;
+		node->type()=node_type;
+		while(record>>node_index)
+			node->id()=node_index;
+		nodes.push_back(node);
+	}
 }
 
 
