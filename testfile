@@ -1,0 +1,18 @@
+void readfile(const char* filename){
+        fstream read;
+        read.open(filename, fstream::in);
+        string temp;
+        int int_temp;
+        while(read>>temp){
+                if(temp=="Inlet:"){
+                        while(read>>temp){
+                                if(temp=="end")
+                                        break;
+                                int_temp=stoi(temp);
+                                shared_ptr<node> node_temp=make_shared<node>(int_temp,'i');
+                                vecnode.push_back(node_temp);
+
+                        }
+                }
+        }
+}
