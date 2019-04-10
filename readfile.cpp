@@ -118,7 +118,16 @@ void readfile(const char* filename){
 	//		index_temp++;
 			istringstream edge_record(str_temp);
 			edge_record>>int_temp1>>int_temp2>>double_temp;
-			shared_ptr<edge> edge_temp=make_shared<edge>(vecnode[int_temp1],vecnode[int_temp2],double_temp);
+			shared_ptr<node> node_temp1, node_temp2;
+			for(auto &i:vecnode){
+				if(i->id()==int_temp1)
+					node_temp1=i;
+			}
+			for(auto &j:vecnode){
+				if(j->id()==int_temp2)
+					node_temp2=j;
+			}
+			shared_ptr<edge> edge_temp=make_shared<edge>(node_temp1,node_temp2,double_temp);
 			vecedge.push_back(edge_temp);
 			}
 
