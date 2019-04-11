@@ -5,9 +5,9 @@
 #include<memory>
 #include<cstring>
 #include<sstream>
-
+#include<set>
 using namespace std;
-
+class node;
 class node{
 private:
 	int _id;
@@ -59,7 +59,7 @@ public:
 	cchannel()=default;
 	cchannel(int id)
 	:_id(id){}
-	const int &id() {return _id;}
+	int &id() {return _id;}
 	set<shared_ptr<node>> &vals() {return _vals;}
 	void add_val(shared_ptr<node> val){
 		if(val->type()=='v')
@@ -73,7 +73,7 @@ class Graph{
 public:
 	vector<shared_ptr<node>> vecnode;
 	vector<shared_ptr<edge>> vecedge;
-	vector<set<shared_ptr<node>>> vecchan;
+	vector<shared_ptr<cchannel>> vecchan;
 	Graph()=default;
 };
 //vector<shared_ptr<node>> vecnode;
@@ -154,7 +154,7 @@ void readfile(const char* filename){
 		if(str_temp=="CChannel:"){
 			int id_temp=0;
 			int v_id_temp=0;
-			while(getline(read,str_temp){
+			while(getline(read,str_temp)){
 				if(str_temp=="end")
 					break;
 				if(str_temp.empty())
@@ -162,12 +162,20 @@ void readfile(const char* filename){
 				istringstream cch_record(str_temp);
 				if(cch_record>>id_temp){
 					shared_ptr<cchannel> chan_temp=make_shared<cchannel>(id_temp);
-					while(cch_record>>v_id_temp)
-						chan_temp->val().add
+					while(cch_record>>v_id_temp){
+						shared_ptr<node> val_temp;
+						for(auto &i:g.vecnode){
+							if(i->id()==v_id_temp)
+								val_temp=i;
+						}
+						chan_temp->add_val(val_temp);
+						g.vecchan.push_back(chan_temp);
+					}
+				}
 			}
 		}
 	}
-	for(auto &j:g.vecnode)
+	for(auto &j:g.vecchan)
 		cout<<j->id()<<endl;
 //	for(auto &i:g.vecedge)
 //		cout<<i->length()<<endl;
