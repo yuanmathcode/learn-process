@@ -169,8 +169,8 @@ void readfile(const char* filename){
 								val_temp=i;
 						}
 						chan_temp->add_val(val_temp);
-						g.vecchan.push_back(chan_temp);
-					}
+					}	
+					g.vecchan.push_back(chan_temp);	
 				}
 			}
 		}
