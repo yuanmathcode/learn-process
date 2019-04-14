@@ -13,7 +13,7 @@ int main(){
 	if(myfile.is_open())
 	{
 		for(auto &j:Randomset)
-			myfile<<j;
+			myfile<<j<<endl;
 		myfile.close();
 	}
 	else cout<<"Unable to open file";
