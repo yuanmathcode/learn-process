@@ -20,9 +20,9 @@ vector<int> read_to_vec()
 //		cout<<i<<endl;
 }
 
-void sort_from_big_to_small(vector<int> v1)
+void sort_from_big_to_small()
 {	
-//	vector<int> v1;
+	vector<int> v1;
 	v1=read_to_vec();
 	for(int i=0;i<v1.size()-1;i++){
 		for(int j=0;j<v1.size()-i-1;j++){
@@ -52,7 +52,15 @@ vector<int> read_from_set()
 	vector<int> v1;
 	for(auto &i:s1)
 		v1.push_back(i);
-	sort_from_big_to_small();
+        for(int i=0;i<v1.size()-1;i++){
+                for(int j=0;j<v1.size()-i-1;j++){
+                        if(v1[j]<v1[j+1]){
+                                int temp=v1[j];
+                                v1[j]=v1[j+1];
+                                v1[j+1]=temp;
+			}
+		}
+	}
 	for(auto &j:v1)
 		cout<<j<<" "<<endl;
 	return v1;
