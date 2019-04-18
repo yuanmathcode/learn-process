@@ -62,6 +62,7 @@ set<int> maximizeMergedSet(vector<set<set<int>>> input){
 			}
 		}
 	}
+	return mergedset;
 }
 
 int main(){
