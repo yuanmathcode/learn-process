@@ -11,9 +11,9 @@ using namespace std;
  */
 vector<set<int>> setsGenerator (int size, pair<int,int> cardinality, pair<int,int> range){
 	vector<set<int>> vec_of_sets;
+	srand(time(nullptr));
 	for(auto count=1;count<=size;count++){
 		set<int> Newset;
-		srand(time(nullptr));
 		int temp2=cardinality.first+rand()%(cardinality.second-cardinality.first+1);
 		for(int i=1;i<=temp2;i++){
 			int temp1=range.first+rand()%(range.second-range.first+1);
@@ -31,9 +31,9 @@ vector<set<int>> setsGenerator (int size, pair<int,int> cardinality, pair<int,in
  */
 vector<set<set<int>>> setOfSetsGenerator (int size, pair<int,int> cardinality, vector<set<int>> input){
 	vector<set<set<int>>> vec_of_set_sets;
+	srand(time(nullptr));
 	for(auto count=1;count<=size;count++){
 		set<set<int>> set_of_sets;
-		srand(time(nullptr));
 		int temp3=cardinality.first+rand()%(cardinality.second-cardinality.first+1);
 		for(int i=1;i<=temp3;i++){
 			int temp4=rand()%(input.size());
