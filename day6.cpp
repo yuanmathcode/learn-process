@@ -16,8 +16,7 @@ vector<set<int>> setsGenerator (int size, pair<int,int> cardinality, pair<int,in
 		set<int> Newset;
 		int temp2=cardinality.first+rand()%(cardinality.second-cardinality.first+1);
 		for(int i=1;i<=temp2;i++){
-			int temp1=range.first+rand()%(range.second-range.first+1);
-			Newset.insert(temp1);
+			Newset.insert(range.first+rand()%(range.second-range.first+1));
 		}	
 		vec_of_sets.push_back(Newset);
 	}
@@ -37,7 +36,7 @@ vector<set<set<int>>> setOfSetsGenerator (int size, pair<int,int> cardinality, v
 		int temp3=cardinality.first+rand()%(cardinality.second-cardinality.first+1);
 		for(int i=1;i<=temp3;i++){
 			int temp4=rand()%(input.size());
-			set_of_sets.insert(input[temp4]);
+			set_of_sets.insert(input[rand()%(input.size())]);
 		}
 		vec_of_set_sets.push_back(set_of_sets);
 		
@@ -46,7 +45,24 @@ vector<set<set<int>>> setOfSetsGenerator (int size, pair<int,int> cardinality, v
 	
 }
 	
-
+// take a vector of sets of sets as input, output a set of integer numbers
+// From each set of sets in the vector, pick exactly one set, and add all the integer numbers contained in this set to the output set.vec<set<set>>>
+// Maximize the cardinality of the output set
+//if set<set>: 1.size> 2.size,pick 1 and add 1 to mergedset
+set<int> maximizeMergedSet(vector<set<set<int>>> input){
+	set<int> mergedset;
+	set<int> compareset;
+	for(auto i:input){//i: v[i]=set<set>>,j:set<>,k:ele in set.select greatest set in set<set>>
+		for(auto j:i){
+			if(j.size()>compareset.size()){
+				compareset=j;
+			}
+			for(auto k:compareset){
+				mergedset.insert(k);
+			}
+		}
+	}
+}
 
 int main(){
 
@@ -64,5 +80,14 @@ int main(){
 				cout<<"}, ";
 	}
 	cout<<"}"<<std::endl;
-  }
+  	}
+	auto mergedSet = maximizeMergedSet(vectorOfSetsOfSets);
+
+	cout<<"Merged set: {";
+
+	for (auto i : mergedSet)
+
+			cout<<i<<", ";
+
+	cout<<"}"<<endl;
 }
