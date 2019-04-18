@@ -14,9 +14,9 @@ vector<set<int>> setsGenerator (int size, pair<int,int> cardinality, pair<int,in
 	for(auto count=1;count<=size;count++){
 		set<int> Newset;
 		srand(time(nullptr));
-		int temp1=range.first+rand()%(range.second-range.first+1);
 		int temp2=cardinality.first+rand()%(cardinality.second-cardinality.first+1);
 		for(int i=1;i<=temp2;i++){
+			int temp1=range.first+rand()%(range.second-range.first+1);
 			Newset.insert(temp1);
 		}	
 		vec_of_sets.push_back(Newset);
@@ -36,8 +36,8 @@ vector<set<set<int>>> setOfSetsGenerator (int size, pair<int,int> cardinality, v
 		srand(time(nullptr));
 		int temp3=cardinality.first+rand()%(cardinality.second-cardinality.first+1);
 		for(int i=1;i<=temp3;i++){
-			for(auto &j: input)
-				set_of_sets.insert(j);
+			int temp4=rand()%(input.size());
+			set_of_sets.insert(input[temp4]);
 		}
 		vec_of_set_sets.push_back(set_of_sets);
 		
