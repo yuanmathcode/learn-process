@@ -2,6 +2,7 @@
 #include<set>
 #include<utility>
 #include<iostream>
+#include<algorithm>
 
 using namespace std;
 
@@ -45,23 +46,48 @@ vector<set<set<int>>> setOfSetsGenerator (int size, pair<int,int> cardinality, v
 	
 }
 	
-// take a vector of sets of sets as input, output a set of integer numbers
-// From each set of sets in the vector, pick exactly one set, and add all the integer numbers contained in this set to the output set.vec<set<set>>>
-// Maximize the cardinality of the output set
-//if set<set>: 1.size> 2.size,pick 1 and add 1 to mergedset
-set<int> maximizeMergedSet(vector<set<set<int>>> input){
-	set<int> mergedset;
-	set<int> compareset;
-	for(auto i:input){//i: v[i]=set<set>>,j:set<>,k:ele in set.select greatest set in set<set>>
-		for(auto j:i){
-			if(j.size()>compareset.size()){
-				compareset=j;
-			}
-			for(auto k:compareset){
-				mergedset.insert(k);
-			}
-		}
+/*vector<vector<set<int>>> maximizeMergedSet(vector<set<set<int>>> input){
+        vector<vector<set<int>>> Newinput;
+        vector<set<int>> Newinput_vec;
+	for(auto i:input){
+		for(auto j:i)
+			Newinput_vec.push_back(j);
+		Newinput.push_back(Newinput_vec);
+		Newinput_vec.clear();
 	}
+		
+	return Newinput;
+}*/
+
+set<int> maximizeMergedSet(vector<set<set<int>>> input){
+	vector<set<int>> vecofmergedsets;
+	set<int> mergedset;
+        vector<vector<set<int>>> Newinput;
+        vector<set<int>> Newinput_vec;
+        for(auto i:input){
+                for(auto j:i)
+                        Newinput_vec.push_back(j);
+                Newinput.push_back(Newinput_vec);
+                Newinput_vec.clear();
+        }
+/*       	for (auto i : Newinput){
+                cout<<"{";
+        for (auto j : i){
+                cout<<"{";
+                        for (auto k : j)
+                                cout<<k<<", ";
+                                cout<<"}, ";
+        }
+        cout<<"}"<<std::endl;
+        }
+*/
+	for(int i=0;i<Newinput.size();i++){
+		for(auto h:Newinput[i][0])
+			mergedset.insert(h);
+		vecofmergedsets.push_back(mergedset);
+		mergedset.clear();
+	}
+
 	return mergedset;
 }
 
@@ -82,13 +108,22 @@ int main(){
 	}
 	cout<<"}"<<std::endl;
   	}
+	cout<<"___________________"<<endl;
+/*	auto newinput=maximizeMergedSet(vectorOfSetsOfSets);
+	for (auto i : newinput){
+		cout<<"{";
+        for (auto j : i){
+		cout<<"{";
+                        for (auto k : j)
+                                cout<<k<<", ";
+                                cout<<"}, ";
+        }
+        cout<<"}"<<std::endl;
+        }*/
+
 	auto mergedSet = maximizeMergedSet(vectorOfSetsOfSets);
-
 	cout<<"Merged set: {";
-
 	for (auto i : mergedSet)
-
 			cout<<i<<", ";
-
 	cout<<"}"<<endl;
 }
