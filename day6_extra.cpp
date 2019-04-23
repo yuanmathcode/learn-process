@@ -77,4 +77,19 @@ vector<vector<set<int>>> maximizeMergedSet(vector<set<set<int>>> input){
         }*/
 
 
+/*set<int> maximizeMergedSet(vector<set<set<int>>> input){
+        set<int> mergedset;
+        set<int> compareset;
+        for(auto i:input){//i: v[i]=set<set>>,j:set<>,k:ele in set.select greatest set in set<set>>
+                for(auto j:i){
+                        if(j.size()>compareset.size()){
+                                compareset=j;
+                        }
+                        for(auto k:compareset){
+                                mergedset.insert(k);
+                        }
+                }
+        }
+        return mergedset;
+}*/
 
