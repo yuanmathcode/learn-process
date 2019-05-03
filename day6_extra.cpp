@@ -93,3 +93,21 @@ vector<vector<set<int>>> maximizeMergedSet(vector<set<set<int>>> input){
         return mergedset;
 }*/
 
+        vector<set<int>> Vecofmergedsets(vector<vector<set<int>>> input,int level,vector<set<int>> array,vector<vector<set<int>>> result){
+        if(level==input.size()){
+                result.push_back(array);
+                return array;
+        }
+        for(auto i:input[level]){
+                array.push_back(i);
+                Vecofmergedsets(input,level+1,array,result);
+//              array.pop_back();
+        }
+
+}
+vector<vector<set<int>>> Subsets(vector<vector<set<int>>> input){
+        vector<vector<set<int>>> combinations;
+        vector<set<int>> arr;
+        Vecofmergedsets(input,0,arr,combinations);
+        return combinations;
+}
