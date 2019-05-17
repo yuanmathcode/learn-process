@@ -55,12 +55,12 @@ vector<shared_ptr<device>> devices;
 
 
 int main(int argc, char* argv[]){
-        operations.push_back(make_shared<operation>(1, 10);
-	operations.push_back(make_shared<operation>(2, 20);
-        operations.push_back(make_shared<operation>(3, 30);
-        operations.push_back(make_shared<operation>(4, 40);
-	operations.push_back(make_shared<operation>(5, 50);
-	operations.push_back(make_shared<operation>(6, 60);
+        operations.push_back(make_shared<operation>(1, 10));
+	operations.push_back(make_shared<operation>(2, 20));
+        operations.push_back(make_shared<operation>(3, 30));
+        operations.push_back(make_shared<operation>(4, 40));
+	operations.push_back(make_shared<operation>(5, 50));
+	operations.push_back(make_shared<operation>(6, 60));
 	for(int j=1;j<=3;j++)
 		devices.push_back(make_shared<device>(j));
 	if(argc=1){
@@ -157,33 +157,5 @@ void set_constraint_group3(){
 		device_working[i]->constr-coeff[sum_constr]=-1;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
