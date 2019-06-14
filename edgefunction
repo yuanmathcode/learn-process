@@ -35,3 +35,7 @@ void set_color_map(){
                 }
         cout<<"  }"<<endl;
         }
+//      for(auto &j:vecedge){
+//              sum_constr++;
+//              constr_sense_map[sum_constr]=-1;
+//              constr_rightside_map[sum_constr]=0;
