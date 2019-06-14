@@ -1,0 +1,37 @@
+//set edge of two node constraints, x_i(j,k)+x_i(j,h)<=y_i;
+/*for(int l=1;l<=25;l++) index of node
+for(auto j:vecedge)
+if l=j->origin()->id(),
+then insert all j->end()->id() in to set s;
+s.insert(j->end()->id); s1=s; //s1 is s backup
+then for(auto h:s),s.erase(h),for(auto k:s1)
+color_map[i][l][h]+color_map[i][l][k]<=y[i]; */
+
+void set_color_map(){
+        for(int i=0;i<25;i++){
+                for(auto &j:vecedge){
+                        color_map[i][j->origin()->id()][j->end()->id()]=make_shared<variable>();
+                        color_map[i][j->origin()->id()][j->end()->id()]->id=vvar.size();
+                        color_map[i][j->origin()->id()][j->end()->id()]->type=0;
+                        color_map[i][j->origin()->id()][j->end()->id()]->upbound=1;
+                        color_map[i][j->origin()->id()][j->end()->id()]->lobound=0;
+                        vvar.push_back(color_map[i][j->origin()->id()][j->end()->id()]);
+                }
+        }
+}
+
+        for(auto i:id_end){
+                cout<<"{ ";     
+                for(auto j:i){
+                        cout<<j<<"  ";
+                }
+        cout<<"  }"<<endl;
+        }
+                cout<<"------------"<<endl;
+        for(auto i:id_endbro){
+                cout<<"{ ";
+                for(auto j:i){
+                        cout<<j<<"  ";
+                }
+        cout<<"  }"<<endl;
+        }
